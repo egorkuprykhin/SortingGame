@@ -14,7 +14,7 @@ namespace Infrastructure.SortingGame
             _gameStarter = ServiceLocator.GetService<SortingGameStarter>();
         }
 
-        protected override void Action()
+        public override void Action()
         {
             _screensService.HideCurrentScreen();
             _gameStarter.StartGame();

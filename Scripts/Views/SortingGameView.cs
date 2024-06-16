@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Infrastructure.SortingGame
 {
-    public abstract class SortingGameView : GameView<SortingGameSettings, SortingAnimationSettings>
+    public abstract class SortingGameView : GameView<SortingGameSettings, SortingSfxSettings, SortingAnimationSettings>
     {
         [SerializeField] private LayoutElement LayoutElement;
 

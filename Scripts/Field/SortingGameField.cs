@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using DG.Tweening;
-using Infrastructure.Data;
 using Infrastructure.Extensions;
 using Infrastructure.Services;
 using Services.Core;
@@ -21,21 +20,27 @@ namespace Infrastructure.SortingGame
 
         private CancellationTokenSource _cancellationTokenSource;
 
-        private SortingGameFactory _gameFactory;
-        private SortingGameSettings _gameSettings;
         private SfxService _sfxService;
+        private SortingGameFactory _gameFactory;
         private GameLifecycleService _gameLifecycleService;
+        private ConfigurationService _configurationService;
+
+        private SortingGameSettings _gameSettings;
+        private SortingSfxSettings _sfxSettings;
         private SortingAnimationSettings _animationSettings;
 
         public HashSet<SortingGroupView> Groups { get; } = new HashSet<SortingGroupView>();
         
         public void Initialize()
         {
-            _gameFactory = ServiceLocator.GetService<SortingGameFactory>();
-            _gameSettings = ServiceLocator.Configuration.GameSettings<SortingGameSettings>();
-            _animationSettings = ServiceLocator.Configuration.AnimationSettings<SortingAnimationSettings>();
             _sfxService = ServiceLocator.GetService<SfxService>();
+            _gameFactory = ServiceLocator.GetService<SortingGameFactory>();
             _gameLifecycleService = ServiceLocator.GetService<GameLifecycleService>();
+            _configurationService = ServiceLocator.GetService<ConfigurationService>();
+
+            _gameSettings = _configurationService.GetSettings<SortingGameSettings>();
+            _sfxSettings = _configurationService.GetSettings<SortingSfxSettings>();
+            _animationSettings = _configurationService.GetSettings<SortingAnimationSettings>();
         }
         
         public async void Create()
@@ -51,7 +56,7 @@ namespace Infrastructure.SortingGame
             {
                 await CreateElementsInGroups(_cancellationTokenSource.Token);
             }
-            catch (OperationCanceledException ex)
+            catch (OperationCanceledException)
             {
             }
             finally
@@ -117,7 +122,7 @@ namespace Infrastructure.SortingGame
             else
                 ReturnElementBack(element);
             
-            _sfxService.PlaySfx(SfxType.MatchChip);
+            _sfxService.PlaySfx(_sfxSettings.ElementPlaced);
         }
 
         private void CreateElementInGroup(SortingGroupView group, SortingElementView element)

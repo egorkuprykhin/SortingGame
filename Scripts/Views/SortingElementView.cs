@@ -1,5 +1,4 @@
 using DG.Tweening;
-using Infrastructure.Data;
 using Infrastructure.Services;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -40,7 +39,7 @@ namespace Infrastructure.SortingGame
             SaveInitialParent();
             transform.SetParent(_dragLayer);
             ScaleIn();
-            _sfxService.PlaySfx(SfxType.SwapChip);
+            _sfxService.PlaySfx(_sfxSettings.ElementTaken);
         }
 
         public void OnDrag(PointerEventData eventData)

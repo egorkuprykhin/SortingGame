@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313cc89e8e8a4e0c8785d428c46c3c1e, type: 3}
+  m_Name: _SortingGameModule
+  m_EditorClassIdentifier: 
+  Settings:
+  - {fileID: 11400000, guid: 111d83edbbacb4d51ae584fcf9a27262, type: 2}
+  - {fileID: 11400000, guid: 41cb42e8f24234f73b5d39c2c5605b5e, type: 2}
+  - {fileID: 11400000, guid: 7153bc7f2fc1a4530b422efff0658b84, type: 2}
